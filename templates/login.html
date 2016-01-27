@@ -47,7 +47,7 @@
 				<div class="row">
 					<div class="col s10">
 						<ul class="tabs col s10" style="width:100%; padding:10px;">
-							<li class="tab col s8"><a href="#Login" class="active">Login</a></li>
+							<li class="tab col s8"><a href="#Login" id="login_a" class="active">Login</a></li>
 							<li class="tab col s8"><a href="#signup">Sign Up</a></li>
 							<!-- <li class="tab col m8"><a class="active" href="#test3">Interests</a></li>-->
 						</ul>
@@ -283,18 +283,16 @@
 <script type="text/javascript">
 
 $(function(){
-
-	
-	
 	var width=$(window).width();
-	if(width<1000){
-		//$("#main_card").css("height",$(document).height());
-		
-		$("#main_card").css("display","table-cell");
-		$("#main_card").css("top",50);
-		$("#main_card").css("margin",0);
-		$("#main_card").css("margin-bottom",50);
-		
+	//alert(width);
+	
+	var login_class=$("#login_a").attr("class");
+	if(width < 1000){
+		if(login_class == "active"){
+			$("#main_card").css("height","1450px");
+		}else{
+			alert("false");
+		}
 	}
 
   $('#register').click(function(){
