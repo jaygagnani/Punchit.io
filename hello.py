@@ -10,6 +10,7 @@ from flask.ext.triangle.widgets.standard import TextInput
 from datetime import timedelta
 from flask import session, app
 import os
+import pusher
 
 settings_local.initParse()
 app = Flask(__name__)
@@ -89,6 +90,13 @@ def send_css(path):
 def send_font(path):
 	print path
 	return send_from_directory('font', path)
+
+@app.route('/NewUpdate/<objectId>')
+def NewUpdate(objectId):
+    p = pusher.Pusher(app_id='173885',key='2f8f1cab459e648a27fd',secret='80905f147470664954bd',ssl=True,port=443)
+    p.trigger('PostChannel', 'NewUpdate', {'message': objectId})
+    return "success"
+
 
 @app.route('/images/<path:path>')
 def send_images(path):

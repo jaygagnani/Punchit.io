@@ -1,5 +1,22 @@
 var app = angular.module('app.controllers',[]);
 
+app.filter('unique', function() {
+   return function(collection, keyname) {
+      var output = [],
+          keys = [];
+
+      angular.forEach(collection, function(item) {
+          var key = item[keyname];
+          if(keys.indexOf(key) === -1) {
+              keys.push(key);
+              output.push(item);
+          }
+      });
+
+      return output;
+   };
+});
+
 app.controller('myCtrl',['$scope','$http','Model',function($scope,$http,Model) {
 	$scope.text = "ddd";
 	// $scope.Data = Data
@@ -29,6 +46,30 @@ app.controller('myCtrl',['$scope','$http','Model',function($scope,$http,Model) {
 	}])
 
 app.controller('bodyCtrl',function($scope,$http,PostService,Model,Search) {
+	Pusher.log = function(message) {
+		if (window.console && window.console.log) {
+			window.console.log(message);
+		}
+	};
+	var newPunches = document.getElementById('newPunches')
+	newPunches.style.display = 'none'
+	var pusher = new Pusher('2f8f1cab459e648a27fd', {
+		encrypted: true
+	});
+	var channel = pusher.subscribe('PostChannel');
+	channel.bind('NewUpdate', function(data) {
+	var prom = PostService.GetSinglePost(data.message)
+	prom.then(function(Data){
+		console.log(JSON.stringify(Data[0]));
+		Array.prototype.insert = function (index, item) {
+		  this.splice(index, 0, item);
+		};
+		var newPunches = document.getElementById('newPunches')
+		newPunches.style.display = 'block'
+		$scope.posts.insert(0,Data[0]);
+		$scope.$apply();
+	})
+	});
 
 	function detectmob() {
 	 if( navigator.userAgent.match(/Android/i)
@@ -54,7 +95,12 @@ app.controller('bodyCtrl',function($scope,$http,PostService,Model,Search) {
 			$scope.SinglePost = Data[0]
 		})
 	}
-
+	$scope.Enter = function(isChecked){
+		if(isChecked)
+		{
+			$scope.PostComment();
+		}
+	}
 	if(detectmob())
 	{
 		$scope.width = "100%";
@@ -189,6 +235,14 @@ function GetComments(objectId)
 						{
 							var User = Comments[i].get("User",Parse.User.current())
 							User.fetch()
+						}
+						if(Comments.length == 0)
+						{
+							$scope.youFirst = true
+						}
+						else
+						{
+							$scope.youFirst = false
 						}
 						$scope.comments = Comments
 						$scope.$apply()
@@ -702,6 +756,14 @@ function GetComments(objectId)
 							var User = Comments[i].get("User",Parse.User.current())
 							User.fetch()
 						}
+						if(Comments.length < 0)
+						{
+							$scope.youFirst = false
+						}
+						else
+						{
+							$scope.youFirst = true
+						}
 						$scope.comments = Comments
 						$scope.$apply()
 				},
@@ -727,6 +789,20 @@ function detectmob() {
   }
 }
 })
+
+app.directive('myEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.myEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
 
 app.config(['$interpolateProvider', function($interpolateProvider) {
   $interpolateProvider.startSymbol('{a');

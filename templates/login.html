@@ -3,6 +3,8 @@
     <head>
     <title>Punchit.io - Login</title>
 
+    <!-- favicon -->
+      <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
 
       <!--Import Google Icon Font-->
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -10,8 +12,8 @@
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="css/style.css"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="css/animate.css"  media="screen,projection"/>
-	  
-	  
+
+
     </head>
 
     <body cz-shortcut-listen="true" style="background:#ef494a;">
@@ -28,51 +30,51 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 <!--Website Coding -->
-<div class="container" style="position: relative;z-index: 3;">
+<div class="container" id="main_container" style="position: relative;z-index: 3;height:100%;">
 	<div class="row">
 		<div class="col l12 m12 s12">
-			<div class="card col s6" style="float:right; margin-top:30px;">
+			<div id="main_card" class="card col l6 s12" style="float:right; margin-top:30px;height:100%;">
 				<div class="row">
 					<div class="col s12">
 						<div class="col s4"><br/></div>
 						<div class="col s4">
-							<img class="responsive-img" src="images/punchit_write.png" style="margin-top:20px;">	
+							<img class="responsive-img" src="images/punchit_write.png" style="margin-top:20px;">
 						</div>
 						<div class="col s4"><br/></div>
 					</div>
 				</div>
-				
+
 				<div class="row">
 					<div class="col s10">
 						<ul class="tabs col s10" style="width:100%; padding:10px;">
 							<li class="tab col s8"><a href="#Login" class="active">Login</a></li>
 							<li class="tab col s8"><a href="#signup">Sign Up</a></li>
 							<!-- <li class="tab col m8"><a class="active" href="#test3">Interests</a></li>-->
-						</ul>                      
+						</ul>
 					</div>
 				</div>
 
 <!--***************************** Tabs ********************************************* -->
-				<div class="row">
+				<div class="row" id="tabs">
 <!--***************************** Login Tab********************************************* -->
 					<div id="Login" class="col s10">
-						<form method="post" action="/">						
+						<form method="post" action="/">
 							<div class="row">
 								<div class="col s12" style="margin-left:7%;">
 									<center style="color:red" class="animated bounce">{{error}}</center>
 								</div>
-								
+
 								<div class="input-field col s12" style="margin-left:9%;">
 									<label for="Email">Email ID</label>
 									<input type="email" id="Email" type="text" class="validate" name="username">
 								</div>
-								
+
 								<div class="input-field col s12" style="margin-left:9%;">
 									<input type="password" id="Password" class="validate" name="password">
 									<label for="Password">Password</label>
 								</div>
 							</div>
-	
+
 							<div class="row">
 								<div class="col s2"><br/></div>
 								<div class="col s10">
@@ -81,23 +83,23 @@
 									</center>
 								</div>
 							</div>
-							
+
 							<div class="row">
 								<div class="col s12" style="margin-left:10%;">
 								<div class="col s5">
 									<hr/>
 								</div>
-	
+
 								<div class="col s2">
 									<center>OR</center>
 								</div>
-	
+
 								<div class="col s5">
 									<hr/>
 								</div>
 								</div>
 							</div>
-	
+
 							<div class="row">
 								<div class="col s2"><br/></div>
 								<div class="col s10">
@@ -108,7 +110,7 @@
 									</center>
 								</div>
 							</div>
-	
+
 							<div class="col 15 s5">
 								<br>
 							</div>
@@ -121,7 +123,7 @@
 					<div id="signup" class="col s10">
 						<form method="post" action="/" enctype="multipart/form-data" id="registerTarget">
 							<div class="row">
-							
+
 								<div class="col s12" style="">
 									<div class="file-field input-field" style="margin-left:7%;">
 										<div class="">
@@ -130,32 +132,32 @@
 												<label for="Image2" style="margin-left:40px;">Upload Image</label>
 											</div>
 											<div class="center row" style="margin-left:10%;">
-												<img src="images/dp.png" id="Preview2" class="circle" style="margin-top:30px;height:150px; width:150px;" />
+												<img src="images/punching_ninja_shades.png" id="Preview2" class="circle" style="margin-top:30px;height:150px; width:150px; border:1px solid #ff4545;" alt="Click to upload." />
 												<input type="file" id="Image2" name="profilePic" id="profilePic" required>
 											</div>
 										</div>
 									</div>
 								</div>
-							
+
 								<div class="input-field col s12" style="margin-left:7%;">
 									<i class="material-icons prefix" style="margin-top:10px;color:#ef494a; margin-left:10px;">email</i>
 									<label for="Email" style="margin-left:50px;">Email</label>
 									<input type="email" id="Email" class="validate" name="email" style="margin-left:50px;" required>
 								</div>
-							
-	
+
+
 								<div class="input-field col s12" style="margin-left:7%;">
 									<i class="material-icons prefix" style="margin-top:10px; color:#ef494a;margin-left:10px;">perm_identity</i>
 									<label for="Name" style="margin-left:50px;">Full Name</label>
 									<input type="text" id="Name" class="validate" name="Name" style="margin-left:50px;" required>
 								</div>
-									
+
 								<div class="input-field col s12" style="margin-left:7%;">
 									<i class="material-icons prefix" style="margin-top:10px; color:#ef494a;margin-left:10px;">perm_identity</i>
 									<label for="ninja" style="margin-left:50px;">Ninja Name</label>
 									<input type="text" id="ninja" class="validate" name="ninja" style="margin-left:50px;" required>
 								</div>
-						
+
 								<div class="input-field col s12" style="margin-left:7%;margin-top:20px;margin-bottom:20px;">
 									<i class="material-icons prefix" style="color:#ef494a;margin-left:10px;">perm_identity</i>
 									<div class="col l3 s6">
@@ -164,36 +166,36 @@
 									<div class="col l9 s12" style="">
 										<input class="with-gap" name="group1" type="radio" id="male" />
 										<label for="male">Male</label>
-										
+
 										<input class="with-gap" name="group1" type="radio" id="female" />
 										<label for="female">Female</label>
-										
+
 										<input class="with-gap" name="group1" type="radio" id="other" />
 										<label for="other">Other</label>
 									</div>
 								</div>
-						
+
 								<div class="input-field col s12" style="margin-left:7%;margin-top:30px;">
 									<i class="material-icons prefix" style="margin-top:10px; color:#ef494a;margin-left:10px;">today</i>
 									<label for="date" style="margin-left:50px;">DoB.</label>
 									<input type="date" id="date" class="validate" style="margin-left:50px;text-align:center;" name="birthdate" required>
 								</div>
-						
+
 								<div class="input-field col s12" style="margin-left:7%;">
 									<i class="material-icons prefix" style="margin-top:10px; color:#ef494a;margin-left:10px;">lock</i>
 									<label for="Password" style="margin-left:50px;">Password</label>
 									<input type="password" id="Password" class="validate" name="password" style="margin-left:50px;" required>
 								</div>
-			
+
 								<div class="input-field col s12" style="margin-left:7%;">
 									<i class="material-icons prefix" style="margin-top:10px; color:#ef494a;margin-left:10px;">lock_open</i>
 									<label for="confirmpassword" style="margin-left:50px;">Confirm Password</label>
 									<input type="password" id="confirmpassword" class="validate" style="margin-left:50px;">
 								</div>
-								
+
 							</div>
-							
-							<div class="row">	
+
+							<div class="row">
 								<div class="col s12">
 									<div class="col s2"><br/></div>
 									<div class="col s10">
@@ -203,22 +205,22 @@
 											<input type="hidden" value="SignUp" name="what"/>
 										</center>
 									</div>
-								</div>				
-							
+								</div>
+
 								<div class="col s12" style="margin-left:5%;margin-top:30px;margin-bottom:30px;">
 									<div class="col s5" style="">
 										<hr style="margin-left:30px;">
 									</div>
-				
+
 									<div class="col s2">
 										<center>OR</center>
 									</div>
-				
+
 									<div class="col s5">
 										<hr>
 									</div>
 								</div>
-		
+
 								<div class="row">
 									<div class="col s12">
 										<div class="col s2"><br/></div>
@@ -234,11 +236,11 @@
 								<div class="col 15 s5">
 									<br>
 								</div>
-								
+
 								<div class="col 15 s5">
 									<br>
 								</div>
-							
+
 								<div class="col 15 s5">
 									<br>
 								</div>
@@ -281,6 +283,19 @@
 <script type="text/javascript">
 
 $(function(){
+
+	
+	
+	var width=$(window).width();
+	if(width<1000){
+		//$("#main_card").css("height",$(document).height());
+		
+		$("#main_card").css("display","table-cell");
+		$("#main_card").css("top",50);
+		$("#main_card").css("margin",0);
+		$("#main_card").css("margin-bottom",50);
+		
+	}
 
   $('#register').click(function(){
     if($('#registerTarget').valid())

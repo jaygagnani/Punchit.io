@@ -6,11 +6,15 @@ app.factory('PostService',['$http','Time','$q',function ($http,Time,$q) {
      GetPosts : function(notContainedIn)
      {
       var deferred = $q.defer();
-    	$http.get('/GetUserInterests').then(function(response) {
-    		var posts = Parse.Object.extend("Posts")
+    	// $http.get('/GetUserInterests').then(function(response) {
+    	// })
+      Parse.Cloud.run("GetUserIntrest",{},{
+        success : function(Interests)
+        {
+          var posts = Parse.Object.extend("Posts")
     		var Query = new  Parse.Query(posts)
         console.log(notContainedIn.length)
-        Query.containedIn("TargetIntrests",response.data.result)
+        Query.containedIn("TargetIntrests",Interests)
     		if(notContainedIn.length > 0){
     			var ExistingObjectIds=new Array();
     			for(var i=0;i<notContainedIn.length;i++)
@@ -56,7 +60,9 @@ app.factory('PostService',['$http','Time','$q',function ($http,Time,$q) {
     				deferred.reject("Error occured : " + error)
     			}
     		})
-    	})
+
+        }
+      });
       return deferred.promise;
     },
     GetSinglePost : function(objectId)
